@@ -8,8 +8,15 @@
   (.log js/console "server responded...")
   (let [resjs
         (-> (clj->js response)  (aget  "body" "greeting"))]
-    (r/render [:h3 (str "Hello From " resjs)]
-              (.getElementById js/document "maincontainer-id"))))
+    (js/console.clear)
+    (js/console.profileEnd())
+    (r/render
+        [:div.row
+          [:div.col-lg-4]
+          [:div.col-lg-8
+           [:h3 {:style {:margin-top "300px" :color "#5af"}}
+            (str "Hello From " resjs)]]]
+        (.getElementById js/document "maincontainer-id"))))
 
 
 (defn error-handler [{:keys [status status-text]}]

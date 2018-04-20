@@ -1,7 +1,7 @@
 (ns ajaxreagent.plotdata)
 
 (def region-chart
-  {:chart {:type "bar"}
+  {:chart {:type "column"}
    :title {:text "Historic World Population by Region"}
    :subtitle {:text "Source: Wikipedia.org"}
    :xAxis {:categories ["Africa" "America" "Asia" "Europe" "Oceania"]
@@ -22,11 +22,14 @@
             :shadow true}
    :credits {:enabled false}
    :series [{:name "Year 1800"
-             :data [107 31 635 203 2]}
+             :data [1107 1531 1635 1203 2]
+             :color "red"}
             {:name "Year 1900"
-             :data [133 156 947 408 6]}
+             :data [1233 1756 1947 1408 6]
+             :color "green"}
             {:name "Year 2008"
-             :data [973 914 4054 732 34]}]})
+             :data [1973 2914 4054 732 34]
+             :color "blue"}]})
 
 ;
 (def line-chart
@@ -53,11 +56,13 @@
            :title {:text nil}}
 
    :colorAxis {:min 0
-               :max 100}
+               :minColor "#fff",
+               :max 50
+               :maxColor "#0f5",}
 
 
    :series [{:type "heatmap"
              :borderWidth 1
              :data
-              [[0 0 10] [1 0 20] [0 1 0] [1 1 1]]
+              [[0 0 15] [1 0 20] [0 1 5] [1 1 10]]
              :dataLabels {:enabled true}}]})

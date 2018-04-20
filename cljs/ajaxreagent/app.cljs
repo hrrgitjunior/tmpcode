@@ -53,8 +53,24 @@
          [:a.nav-link { :href "javascript:"
                        :on-click
                        (fn [e]
-                         (chart-plot-service"region"))}
-           [:span.nav-link-text "Region"]]]]]])
+                         (chart-plot-service "region"))}
+           [:span.nav-link-text "Region"]]]
+
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                       :on-click
+                       (fn [e]
+                         (chart-plot-service "line"))}
+           [:span.nav-link-text "Line"]]]
+
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                       :on-click
+                       (fn [e]
+                         (chart-plot-service "heatmap"))}
+           [:span.nav-link-text "Heatmap"]]]]]])
+
+
 
 
 

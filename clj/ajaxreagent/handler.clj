@@ -13,7 +13,7 @@
   (GET "/" [] (response/resource-response "index.html" {:root "public"}))
   (route/resources "/")
   (POST "/hello" request
-        (response/response {:body {:greeting "RING SERVER"}}))
+        (response/response {:body {:greeting "Ring Server"}}))
 
   (POST "/plot" request
         (response/response

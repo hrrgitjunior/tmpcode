@@ -4,7 +4,7 @@
  :min-lein-version "2.0.0"
  :source-paths ["src/clj"]
  :dependencies [[org.clojure/clojure "1.9.0-beta4" :scope "provided"]; 1.7.0 1.9.0-beta4
-                ;[org.clojure/clojure "1.7.0"]
+                [org.clojure/clojure "1.7.0"]
                 ;[org.clojure/clojure "1.8.0" :scope "provided"]
                 [compojure "1.6.0"]
                 [ring/ring-defaults "0.1.5"]
