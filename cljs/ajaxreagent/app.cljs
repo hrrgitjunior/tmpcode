@@ -6,6 +6,7 @@
             ;[ajaxreagent.querybuildercomponent :refer [query-builder-component]]
             [ajaxreagent.querybuilderarray :refer [query-builder-component]]
             [ajaxreagent.itemselection :refer [item-selection-component]]
+            [ajaxreagent.htmltable :refer [simple-html-table simple-html-table-2 simple-gallery]]
             [webpack.bundle]))
 
 
@@ -68,8 +69,15 @@
                        :on-click
                        (fn [e]
                          (chart-plot-service "heatmap"))}
-           [:span.nav-link-text "Heatmap"]]]]]])
+           [:span.nav-link-text "Heatmap"]]]
 
+
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                        :on-click
+                        (fn [e]
+                          (simple-gallery {:container (.getElementById js/document "maincontainer-id")}))}
+           [:span.nav-link-text "Simple Html Table"]]]]]])
 
 
 
@@ -94,5 +102,5 @@
 (r/render [app] (.-body js/document))
 
 
-(.log js/console "Hello Cljs 123!")
+(.log js/console "Hello Cljs 123456!")
 ;(js/console.log (renderToString (createElement "div" nil "Hello World!")))

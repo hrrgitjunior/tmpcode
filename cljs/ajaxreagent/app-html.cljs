@@ -6,6 +6,7 @@
             ;[ajaxreagent.querybuildercomponent :refer [query-builder-component]]
             [ajaxreagent.querybuilderarray :refer [query-builder-component]]
             [ajaxreagent.itemselection :refer [item-selection-component]]
+            [ajaxreagent.app :refer [app-render]]
             [webpack.bundle]))
 
 
@@ -134,7 +135,7 @@
             container)))
 
 
-(defn app-render []
+(defn app-render-html []
   [:div.row
    [:div.col-lg-3 {:style
                    {:background-color "#eff"
@@ -222,11 +223,11 @@
         (println "did mount app"))
 
      :reagent-render
-      (fn [] app-render)}))
+      (fn [] app-render)})) ;Important:::  APP-RENDER from app.js run boostrap menu, APP-RENDER-HTML run html menu from app-html.cljs
 
 
 (r/render [app] (.-body js/document))
 
 
-(.log js/console "Hello Cljs 123!")
+(.log js/console "Hello Cljs!")
 ;(js/console.log (renderToString (createElement "div" nil "Hello World!")))
