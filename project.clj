@@ -42,6 +42,25 @@
                                    :foreign-libs [{:file "public/js/bundle.js"
                                                    :provides ["cljsjs.react" "cljsjs.react.dom" "webpack.bundle"]}]}}]}
 
- :profiles
- {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                       [ring/ring-mock "0.3.0"]]}})
+ ; :profiles
+ ; {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
+ ;                       [ring/ring-mock "0.3.0"]]}}
+
+
+ :profiles {:dev {:dependencies [[binaryage/devtools "0.9.7"]
+                                 [binaryage/dirac "1.3.8"]
+                                 [figwheel-sidecar "0.5.16"]
+                                 [proto-repl "0.3.1"]
+                                 [cider/piggieback "0.4.1"]
+                                 [nrepl "0.6.0"]]
+                                 ; [org.clojure/tools.nrepl "0.2.13"]]
+                  ;; need to add dev source path here to get user.clj loaded
+                  :source-paths ["src" "dev" "test"]
+                  ;; for CIDER
+                  ;; :plugins [[cider/cider-nrepl "0.12.0"]]
+                  ; :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
+                  :repl-options {:port 8230
+                                 :nrepl-middleware [cider.piggieback/wrap-cljs-repl dirac.nrepl/middleware]
+                                 :init (do
+                                         (require 'dirac.agent)
+                                         (dirac.agent/boot!))}}})

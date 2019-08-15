@@ -4,7 +4,8 @@
             [reagent.core :as r]
             [ajaxreagent.highcharts :refer [chart-component]]
             [ajaxreagent.report :refer [report-component]]
-            [ajaxreagent.d3plot :refer [d3plot-component]]))
+            [ajaxreagent.d3plot :refer [d3plot-component]]
+            [ajaxreagent.forcegraph :refer [force-graph-component]]))
 
 
 (defn handler-chart [response]
@@ -25,7 +26,26 @@
      :plot-data (aget (clj->js response) "body" "plot-data")}))
 
 
+(defn force-graph-handler [response]
+  (let [nodes
+        (->> (-> (clj->js response) (aget "body" "nodes") js->clj)
+          (mapv
+            (fn [item]
+              (into {}
+                (->> item
+                  (map (fn [[k v]] {(keyword k) v})))))))
+        ;
+        links
+        (->> (-> (clj->js response) (aget "body" "links") js->clj)
+          (mapv
+            (fn [item]
+              (into {}
+                (->> item
+                  (map (fn [[k v]] {(keyword k) v})))))))]
 
+
+    (force-graph-component { :container (.getElementById js/document "maincontainer-id")
+                             :graph {:nodes nodes :links links}})))
 
 
 
@@ -53,6 +73,14 @@
   (POST "/report"
         {:params {}
          :handler handler-report
+         :error-handler error-handler
+         :format :json
+         :response-format :json}))
+
+(defn force-graph-service []
+  (POST "/force-graph-data"
+        {:params {}
+         :handler force-graph-handler
          :error-handler error-handler
          :format :json
          :response-format :json}))

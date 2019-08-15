@@ -8,8 +8,8 @@
   (.log js/console "server responded...")
   (let [resjs
         (-> (clj->js response)  (aget  "body" "greeting"))]
-    (js/console.clear)
-    (js/console.profileEnd())
+    ; (js/console.clear)
+    ; (js/console.profileEnd())
     (r/render
         [:div.row
           [:div.col-lg-4]

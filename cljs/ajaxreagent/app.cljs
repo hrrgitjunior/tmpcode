@@ -2,11 +2,13 @@
   (:require [ajaxreagent.greet :as greet]
             [reagent.core :as r]
             [ajaxreagent.highcharts :refer [chart-component]]
-            [ajaxreagent.service :refer  [chart-plot-service report-service cluster-dendrogram-service]]
+            [ajaxreagent.service :refer  [chart-plot-service report-service cluster-dendrogram-service force-graph-service]]
             ;[ajaxreagent.querybuildercomponent :refer [query-builder-component]]
             [ajaxreagent.querybuilderarray :refer [query-builder-component]]
             [ajaxreagent.itemselection :refer [item-selection-component]]
             [ajaxreagent.htmltable :refer [simple-html-table simple-html-table-2 simple-gallery]]
+            [ajaxreagent.matrixtable :refer [matrix-table-component]]
+            [ajaxreagent.jqdatatable :refer [data-table-component]]
             [webpack.bundle]))
 
 
@@ -77,7 +79,35 @@
                         :on-click
                         (fn [e]
                           (simple-gallery {:container (.getElementById js/document "maincontainer-id")}))}
-           [:span.nav-link-text "Simple Html Table"]]]]]])
+           [:span.nav-link-text "Simple Html Table"]]]
+
+;
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                        :on-click
+                        (fn [e]
+                          (matrix-table-component {:container (.getElementById js/document "maincontainer-id")}))}
+           [:span.nav-link-text "Matrix Graph"]]]
+
+        ;
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                        :on-click
+                        (fn [e]
+                          (data-table-component {:container (.getElementById js/document "maincontainer-id")}))}
+           [:span.nav-link-text "Data Table"]]]
+        ;
+        [:li.nav-item {:data-toggle "tooltip" :data-placement "right" :title "Dashboard"}
+         [:a.nav-link { :href "javascript:"
+                        :on-click
+                        (fn [e]
+                          (js/window.open "popup.html"))}
+           [:span.nav-link-text "Pop up"]]]]]])
+
+
+
+
+;force-graph-service [handler-force-graph]
 
 
 

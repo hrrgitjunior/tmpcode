@@ -7,7 +7,10 @@
             [hiccup.page :refer [include-js include-css html5]]
             [ajaxreagent.plotdata :as pd]
             [ajaxreagent.report :as r]
-            [ajaxreagent.clusterdendrogram :as cd]))
+            [ajaxreagent.clusterdendrogram :as cd]
+            [ajaxreagent.graphdata :as gd]
+            [clojure.data.json :as json]))
+
 
 (defroutes app-routes
   (GET "/" [] (response/resource-response "index.html" {:root "public"}))
@@ -42,6 +45,10 @@
       (response/response
         {:body (cd/cluster-dendrogram)})))
 
+  (POST "/force-graph-data" request
+    (fn [req]
+      (response/response
+        {:body gd/graph-data})))
 
 
 
